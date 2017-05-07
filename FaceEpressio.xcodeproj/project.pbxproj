@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9860AAAA1EBFB62C009FA5DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9860AAA91EBFB62C009FA5DF /* AppDelegate.swift */; };
-		9860AAAC1EBFB62C009FA5DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9860AAAB1EBFB62C009FA5DF /* ViewController.swift */; };
+		9860AAAC1EBFB62C009FA5DF /* FaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9860AAAB1EBFB62C009FA5DF /* FaceViewController.swift */; };
 		9860AAAF1EBFB62C009FA5DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9860AAAD1EBFB62C009FA5DF /* Main.storyboard */; };
 		9860AAB11EBFB62C009FA5DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9860AAB01EBFB62C009FA5DF /* Assets.xcassets */; };
 		9860AAB41EBFB62C009FA5DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9860AAB21EBFB62C009FA5DF /* LaunchScreen.storyboard */; };
@@ -17,7 +17,7 @@
 /* Begin PBXFileReference section */
 		9860AAA61EBFB62C009FA5DF /* FaceEpressio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceEpressio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9860AAA91EBFB62C009FA5DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9860AAAB1EBFB62C009FA5DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9860AAAB1EBFB62C009FA5DF /* FaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceViewController.swift; sourceTree = "<group>"; };
 		9860AAAE1EBFB62C009FA5DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9860AAB01EBFB62C009FA5DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9860AAB31EBFB62C009FA5DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,14 +54,22 @@
 		9860AAA81EBFB62C009FA5DF /* FaceEpressio */ = {
 			isa = PBXGroup;
 			children = (
-				9860AAA91EBFB62C009FA5DF /* AppDelegate.swift */,
-				9860AAAB1EBFB62C009FA5DF /* ViewController.swift */,
+				9860AABB1EBFB67D009FA5DF /* Supporting Files */,
+				9860AAAB1EBFB62C009FA5DF /* FaceViewController.swift */,
 				9860AAAD1EBFB62C009FA5DF /* Main.storyboard */,
+			);
+			path = FaceEpressio;
+			sourceTree = "<group>";
+		};
+		9860AABB1EBFB67D009FA5DF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9860AAA91EBFB62C009FA5DF /* AppDelegate.swift */,
 				9860AAB01EBFB62C009FA5DF /* Assets.xcassets */,
 				9860AAB21EBFB62C009FA5DF /* LaunchScreen.storyboard */,
 				9860AAB51EBFB62C009FA5DF /* Info.plist */,
 			);
-			path = FaceEpressio;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,7 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9860AAAC1EBFB62C009FA5DF /* ViewController.swift in Sources */,
+				9860AAAC1EBFB62C009FA5DF /* FaceViewController.swift in Sources */,
 				9860AAAA1EBFB62C009FA5DF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
