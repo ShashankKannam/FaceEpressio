@@ -12,11 +12,21 @@ class FaceViewController: UIViewController {
     
     @IBOutlet weak var faceView: FaceView!  {
         didSet{
+            
             let pinchGesture = UIPinchGestureRecognizer(target: faceView, action: #selector(faceView.changedByPinchGesture(pinch:)))
             faceView.addGestureRecognizer(pinchGesture)
+            
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.toggleEyes(byReactingTo:)))
             tapGesture.numberOfTapsRequired = 1
             faceView.addGestureRecognizer(tapGesture)
+            
+            let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.increaseHapiness))
+            swipeUpGesture.direction = .up
+            let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.decreaseHapiness))
+            swipeDownGesture.direction = .down
+            faceView.addGestureRecognizer(swipeUpGesture)
+            faceView.addGestureRecognizer(swipeDownGesture)
+            
             updateUI()
         }
     }
@@ -28,6 +38,13 @@ class FaceViewController: UIViewController {
         }
     }
     
+    func increaseHapiness() {
+        expression = expression.happier
+    }
+    
+    func decreaseHapiness() {
+        expression = expression.sadder
+    }
     
     func toggleEyes(byReactingTo tapGesture: UITapGestureRecognizer) {
         if tapGesture.state == .ended {
