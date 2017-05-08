@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EmotionsViewController: UIViewController {
+class EmotionsViewController: VCLLoggingViewController {
 
     private var emotions:[String:FacialExpression] = ["sad":FacialExpression(eyes: .closed, mouth: .frown), "happy":FacialExpression(eyes: .open, mouth: .smile)]
     // MARK: - Navigation
