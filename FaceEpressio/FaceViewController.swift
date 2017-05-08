@@ -9,17 +9,46 @@
 import UIKit
 
 class FaceViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    
+    @IBOutlet weak var faceView: FaceView!  {
+        didSet{
+            let pinchGesture = UIPinchGestureRecognizer(target: faceView, action: #selector(faceView.changedByPinchGesture(pinch:)))
+            faceView.addGestureRecognizer(pinchGesture)
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.toggleEyes(byReactingTo:)))
+            tapGesture.numberOfTapsRequired = 1
+            faceView.addGestureRecognizer(tapGesture)
+            updateUI()
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    
+    var expression = FacialExpression(eyes: .closed, mouth: .neutral) {
+        didSet{
+            updateUI()
+        }
     }
+    
+    
+    func toggleEyes(byReactingTo tapGesture: UITapGestureRecognizer) {
+        if tapGesture.state == .ended {
+            let eyes: FacialExpression.Eyes = (expression.eyes == .open) ? .closed : .open
+            expression = FacialExpression(eyes: eyes, mouth: expression.mouth)
+        }
+    }
+    
+    private let mouthCurvatures: [FacialExpression.Mouth: CGFloat] = [.grin : 0.5, .neutral : 0.0, .frown : -1.0, .smile : 1.0, .smirk : -0.5]
 
-
+    
+    private func updateUI(){
+        switch expression.eyes {
+        case .open:
+            faceView?.isEyesClosed = false
+        case .closed:
+            faceView?.isEyesClosed = true
+        case .squinting:
+            faceView?.isEyesClosed = true
+        }
+        faceView?.mouthCurvature = mouthCurvatures[expression.mouth] ?? 0.0
+    }
 }
 

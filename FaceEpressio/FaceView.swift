@@ -12,21 +12,31 @@ import UIKit
 class FaceView: UIView {
     
     @IBInspectable
-    var contentScale: CGFloat = 0.9
+    var contentScale: CGFloat = 0.9 { didSet { setNeedsDisplay() } }
     
     @IBInspectable
-    var isEyesClosed: Bool = false
+    var isEyesClosed: Bool = false { didSet { setNeedsDisplay() } }
     
     @IBInspectable
-    var faceColor: UIColor = UIColor.red
+    var faceColor: UIColor = UIColor.red { didSet { setNeedsDisplay() } }
     
     @IBInspectable
-    var faceLineWidth: CGFloat = 5.0
+    var faceLineWidth: CGFloat = 5.0 { didSet { setNeedsDisplay() } }
     
     @IBInspectable
-    var mouthCurvature: CGFloat = 0.5
+    var mouthCurvature: CGFloat = 0.5 { didSet { setNeedsDisplay() } }
     
-    var mouthExpression: Mouth = .smiled
+    func changedByPinchGesture(pinch: UIPinchGestureRecognizer) {
+        switch pinch.state {
+        case .changed, .ended:
+           // print("before : \(pinch.scale)")
+            contentScale *= pinch.scale
+            pinch.scale = 1
+           // print("After : \(pinch.scale)")
+        default:
+            break
+        }
+    }
     
     private var skullCenter: CGPoint {
         return CGPoint(x: bounds.midX, y: bounds.midY)
@@ -93,21 +103,8 @@ class FaceView: UIView {
         
         let smileOffset = max(-1, min(mouthCurvature,1)) * mouthRect.height
         
-        let controlPoint1: CGPoint
-        let controlPoint2: CGPoint
-        
-        switch mouthExpression {
-        case .smiled:
-            controlPoint1 = CGPoint(x: startPoint.x + mouthWidth/3, y: startPoint.y + smileOffset)
-            controlPoint2 = CGPoint(x: endPoint.x - mouthWidth/3, y: startPoint.y + smileOffset)
-        case .frown:
-            controlPoint1 = CGPoint(x: startPoint.x + mouthWidth/3, y: startPoint.y - smileOffset)
-            controlPoint2 = CGPoint(x: endPoint.x - mouthWidth/3, y: startPoint.y - smileOffset)
-        case .normal:
-            controlPoint1 = CGPoint(x: startPoint.x + mouthWidth/3, y: startPoint.y)
-            controlPoint2 = CGPoint(x: endPoint.x - mouthWidth/3, y: startPoint.y)
-        }
-        
+        let controlPoint1: CGPoint = CGPoint(x: startPoint.x + mouthWidth/3, y: startPoint.y + smileOffset)
+        let controlPoint2: CGPoint = CGPoint(x: endPoint.x - mouthWidth/3, y: startPoint.y + smileOffset)
         let path = UIBezierPath()
         path.move(to: startPoint)
         path.addCurve(to: endPoint, controlPoint1: controlPoint1, controlPoint2: controlPoint2)
