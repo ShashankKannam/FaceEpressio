@@ -26,6 +26,8 @@ class FaceView: UIView {
     @IBInspectable
     var mouthCurvature: CGFloat = 0.5
     
+    var mouthExpression: Mouth = .smiled
+    
     private var skullCenter: CGPoint {
         return CGPoint(x: bounds.midX, y: bounds.midY)
     }
@@ -76,7 +78,7 @@ class FaceView: UIView {
         return eyePath
     }
   
-    private func pathForMouth(mouth: Mouth) -> UIBezierPath {
+    private func pathForMouth() -> UIBezierPath {
         //let mouthPath: UIBezierPath
         
         let mouthOffset = skullRadius/Ratios.skullRadiusToMouthOffset
@@ -94,7 +96,7 @@ class FaceView: UIView {
         let controlPoint1: CGPoint
         let controlPoint2: CGPoint
         
-        switch mouth {
+        switch mouthExpression {
         case .smiled:
             controlPoint1 = CGPoint(x: startPoint.x + mouthWidth/3, y: startPoint.y + smileOffset)
             controlPoint2 = CGPoint(x: endPoint.x - mouthWidth/3, y: startPoint.y + smileOffset)
@@ -119,7 +121,7 @@ class FaceView: UIView {
        facePath.stroke()
        eyePath(eye: .left).stroke()
        eyePath(eye: .right).stroke()
-       pathForMouth(mouth: .smiled).stroke()
+       pathForMouth().stroke()
     }
  
     private struct Ratios {
