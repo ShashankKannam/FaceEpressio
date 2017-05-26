@@ -12,7 +12,7 @@ class FaceViewController: VCLLoggingViewController {
     
     @IBOutlet weak var faceView: FaceView!  {
         didSet{
-            
+            print("---FaceView outlet property is set---")
             let pinchGesture = UIPinchGestureRecognizer(target: faceView, action: #selector(faceView.changedByPinchGesture(pinch:)))
             faceView.addGestureRecognizer(pinchGesture)
             

@@ -14,6 +14,7 @@ class EmotionsViewController: VCLLoggingViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("******In prepare for segue \(self.description) *****")
         var destinationViewController = segue.destination
         if let navigationController = destinationViewController as? UINavigationController {
             destinationViewController = navigationController.visibleViewController ?? destinationViewController
