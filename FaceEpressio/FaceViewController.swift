@@ -26,8 +26,34 @@ class FaceViewController: VCLLoggingViewController {
             swipeDownGesture.direction = .down
             faceView.addGestureRecognizer(swipeUpGesture)
             faceView.addGestureRecognizer(swipeDownGesture)
-            
             updateUI()
+        }
+    }
+    
+    private struct HeadShake {
+        static let angle = CGFloat.pi/6 // radians
+        static let segementDuration: TimeInterval = 0.5 // head shake
+    }
+    
+    private func rotateHead(by angle: CGFloat) {
+        faceView.transform = faceView.transform.rotated(by: angle)
+    }
+     
+    func sheakHead() {
+        UIView.animate(withDuration: HeadShake.segementDuration, animations: { 
+            self.rotateHead(by: HeadShake.angle)
+        }) { finished in
+            if finished {
+                UIView.animate(withDuration: HeadShake.segementDuration, animations: { 
+                    self.rotateHead(by: -HeadShake.angle * 2)
+                }, completion: { finished in
+                    if finished {
+                        UIView.animate(withDuration: HeadShake.segementDuration, animations: {
+                            self.rotateHead(by: HeadShake.angle)
+                        })
+                    }
+                })
+            }
         }
     }
     
@@ -66,6 +92,15 @@ class FaceViewController: VCLLoggingViewController {
             faceView?.isEyesClosed = true
         }
         faceView?.mouthCurvature = mouthCurvatures[expression.mouth] ?? 0.0
+    }
+    
+    @IBAction func tap(_ sender: UITapGestureRecognizer) {
+        switch sender.state {
+        case .ended,.changed,.began:
+            sheakHead()
+        default:
+            break
+        }
     }
 }
 

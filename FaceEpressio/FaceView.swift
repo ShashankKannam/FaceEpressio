@@ -145,5 +145,4 @@ class FaceView: UIView {
         static let skullRadiusToMouthWidth: CGFloat = 1
         static let skullRadiusToMouthHeight: CGFloat = 3
     }
-
 }
