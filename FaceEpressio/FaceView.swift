@@ -14,14 +14,23 @@ class FaceView: UIView {
     @IBInspectable
     var contentScale: CGFloat = 0.9 { didSet { setNeedsDisplay() } }
     
-    @IBInspectable
-    var isEyesClosed: Bool = false { didSet { setNeedsDisplay() } }
+    @IBInspectable 
+    var isEyesClosed: Bool = false { didSet {
+        leftEye.eyesOpen = isEyesClosed
+        rightEye.eyesOpen = isEyesClosed
+        } }
     
     @IBInspectable
-    var faceColor: UIColor = UIColor.red { didSet { setNeedsDisplay() } }
+    var faceColor: UIColor = UIColor.red { didSet {
+        leftEye.color = faceColor
+        rightEye.color = faceColor
+        setNeedsDisplay() } }
     
     @IBInspectable
-    var faceLineWidth: CGFloat = 5.0 { didSet { setNeedsDisplay() } }
+    var faceLineWidth: CGFloat = 5.0 { didSet {
+        leftEye.lineWidth = faceLineWidth
+        rightEye.lineWidth = faceLineWidth
+        setNeedsDisplay() } }
     
     @IBInspectable
     var mouthCurvature: CGFloat = 0.5 { didSet { setNeedsDisplay() } }
@@ -63,29 +72,37 @@ class FaceView: UIView {
         case normal
     }
     
-    private func eyePath(eye: Eye) -> UIBezierPath {
-        
-        func eyeCenter(eyeIn: Eye) -> CGPoint {
+    private func eyeCenter(eyeIn: Eye) -> CGPoint {
             let eyeOffset = skullRadius/Ratios.skullRadiusToEyeOffset
             var eyecenter = skullCenter
             eyecenter.y -= eyeOffset
             eyecenter.x += ((eyeIn == .left) ? -1 : 1) * eyeOffset
             return eyecenter
         }
-        
-        let eyePath: UIBezierPath
-        let centerOfEye: CGPoint = eyeCenter(eyeIn: eye)
-        let eyeRadius = skullRadius/Ratios.skullRadiusToEyeRadius
-        
-        if isEyesClosed {
-           eyePath = UIBezierPath()
-           eyePath.move(to: CGPoint(x: centerOfEye.x - eyeRadius, y: centerOfEye.y))
-           eyePath.addLine(to: CGPoint(x: centerOfEye.x + eyeRadius, y: centerOfEye.y))
-        } else {
-            eyePath = UIBezierPath(arcCenter: centerOfEye, radius: eyeRadius, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: false)
-        }
-        eyePath.lineWidth = faceLineWidth
-        return eyePath
+    
+    private lazy var leftEye: EyeView = self.createEye()
+    private lazy var rightEye: EyeView = self.createEye()
+    
+    private func createEye() -> EyeView {
+        let eye = EyeView()
+        eye.isOpaque = false
+        eye.color = faceColor
+        eye.lineWidth = faceLineWidth
+        addSubview(eye)
+        return eye
+    }
+    
+    private func positionEye(_ eye: EyeView, center: CGPoint) {
+
+        let size = skullRadius/Ratios.skullRadiusToEyeRadius * 2
+        eye.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: size, height: size))
+        eye.center = center
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        positionEye(leftEye, center: eyeCenter(eyeIn: .left))
+        positionEye(rightEye, center: eyeCenter(eyeIn: .right)) 
     }
   
     private func pathForMouth() -> UIBezierPath {
@@ -116,8 +133,8 @@ class FaceView: UIView {
         // Drawing code
        faceColor.set()
        facePath.stroke()
-       eyePath(eye: .left).stroke()
-       eyePath(eye: .right).stroke()
+       //eyePath(eye: .left).stroke()
+       //eyePath(eye: .right).stroke()
        pathForMouth().stroke()
     }
  
