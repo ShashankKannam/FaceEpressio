@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		981EA6331EC11ACD00F5F587 /* VCLLoggingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981EA6321EC11ACD00F5F587 /* VCLLoggingViewController.swift */; };
+		9839C2631EDBBB3F00093088 /* ExpressionEditorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9839C2621EDBBB3F00093088 /* ExpressionEditorTableViewController.swift */; };
 		9860AAAA1EBFB62C009FA5DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9860AAA91EBFB62C009FA5DF /* AppDelegate.swift */; };
 		9860AAAC1EBFB62C009FA5DF /* FaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9860AAAB1EBFB62C009FA5DF /* FaceViewController.swift */; };
 		9860AAAF1EBFB62C009FA5DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9860AAAD1EBFB62C009FA5DF /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		981EA6321EC11ACD00F5F587 /* VCLLoggingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCLLoggingViewController.swift; sourceTree = "<group>"; };
+		9839C2621EDBBB3F00093088 /* ExpressionEditorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpressionEditorTableViewController.swift; sourceTree = "<group>"; };
 		9860AAA61EBFB62C009FA5DF /* FaceEpressio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceEpressio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9860AAA91EBFB62C009FA5DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9860AAAB1EBFB62C009FA5DF /* FaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				989B42CB1EC02CD800875401 /* EmotionsViewController.swift */,
 				981EA6321EC11ACD00F5F587 /* VCLLoggingViewController.swift */,
 				98894DE41ED7A885002C8A76 /* BlinkingViewController.swift */,
+				9839C2621EDBBB3F00093088 /* ExpressionEditorTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				981EA6331EC11ACD00F5F587 /* VCLLoggingViewController.swift in Sources */,
+				9839C2631EDBBB3F00093088 /* ExpressionEditorTableViewController.swift in Sources */,
 				9860AAAC1EBFB62C009FA5DF /* FaceViewController.swift in Sources */,
 				9860AAC21EBFF7B3009FA5DF /* FacialExpression.swift in Sources */,
 				989B42CC1EC02CD800875401 /* EmotionsViewController.swift in Sources */,

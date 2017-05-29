@@ -82,14 +82,15 @@ class FaceViewController: VCLLoggingViewController {
     private let mouthCurvatures: [FacialExpression.Mouth: CGFloat] = [.grin : 0.5, .neutral : 0.0, .frown : -1.0, .smile : 1.0, .smirk : -0.5]
 
     
-    private func updateUI(){
+    func updateUI(){
         switch expression.eyes {
         case .open:
             faceView?.isEyesClosed = false
         case .closed:
             faceView?.isEyesClosed = true
         case .squinting:
-            faceView?.isEyesClosed = true
+            //faceView?.isEyesClosed = true
+            break
         }
         faceView?.mouthCurvature = mouthCurvatures[expression.mouth] ?? 0.0
     }
