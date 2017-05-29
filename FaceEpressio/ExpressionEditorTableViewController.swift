@@ -73,6 +73,25 @@ class ExpressionEditorTableViewController: UITableViewController, UITextFieldDel
         }
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "Add Emotion", name.isEmpty {
+            nameAlert()
+            return false
+        }
+        return super.shouldPerformSegue(withIdentifier: identifier, sender: sender)
+    }
+    
+    private func nameAlert() {
+        let alert = UIAlertController(title: "Invalid Name", message: "Please give name for the expression", preferredStyle: .alert)
+        alert.addTextField(configurationHandler: nil)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {
+            action in
+            self.nameTF.text = alert.textFields?.first?.text
+            self.performSegue(withIdentifier: "Add Emotion", sender: nil)
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
 }
 
 extension UITableView {

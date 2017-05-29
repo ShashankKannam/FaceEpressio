@@ -182,7 +182,7 @@
                                         <rect key="frame" x="0.0" y="44" width="375" height="139"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jG5-kt-Myq" id="p3L-kz-mF7">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="138.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EkK-oP-qVI">
@@ -272,7 +272,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="osZ-Rf-40p">
                             <connections>
-                                <segue destination="QIQ-fX-IUB" kind="unwind" unwindAction="addEmotionalFaceFrom:" id="XeI-fY-m5d"/>
+                                <segue destination="QIQ-fX-IUB" kind="unwind" identifier="Add Emotion" unwindAction="addEmotionalFaceFrom:" id="XeI-fY-m5d"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -327,6 +327,10 @@
         <scene sceneID="s9g-xY-RNr">
             <objects>
                 <viewController id="bNZ-MK-sxg" customClass="BlinkingViewController" customModule="FaceEpressio" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="v2f-4L-MCc"/>
+                        <viewControllerLayoutGuide type="bottom" id="NbC-qz-Bun"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cQ6-Gq-efm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="138.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
