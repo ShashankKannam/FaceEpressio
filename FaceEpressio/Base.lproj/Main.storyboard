@@ -133,7 +133,9 @@
                     <navigationItem key="navigationItem" title="Emotions" id="Lme-RV-kJO">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ty3-eJ-aM5">
                             <connections>
-                                <segue destination="Tvb-JG-PHK" kind="presentation" id="6lO-we-You"/>
+                                <segue destination="Tvb-JG-PHK" kind="popoverPresentation" popoverAnchorBarButtonItem="ty3-eJ-aM5" id="6lO-we-You">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -268,6 +270,11 @@
                                 <action selector="cancel:" destination="i7S-46-ep6" id="SfT-72-uWo"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="osZ-Rf-40p">
+                            <connections>
+                                <segue destination="QIQ-fX-IUB" kind="unwind" unwindAction="addEmotionalFaceFrom:" id="XeI-fY-m5d"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="eyesControl" destination="sBm-Hk-V4D" id="pgH-qE-m36"/>
@@ -276,6 +283,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbY-7W-MEU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="QIQ-fX-IUB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2952.8000000000002" y="-522.18890554722645"/>
         </scene>
